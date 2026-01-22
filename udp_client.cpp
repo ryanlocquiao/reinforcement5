@@ -4,7 +4,7 @@
 #include <netinet/in.h>     // htonl, htons, inet_ntoa
 #include <arpa/inet.h>      // inet_ntoa
 #include <netdb.h>          // gethostbyname
-#include <unistd.h>         // read, write, close
+#include <unistd.h>         // read, write, close, usleep
 #include <strings.h>        // bzero
 #include <stdio.h>          // perror, fprintf
 #include <stdlib.h>         // exit
@@ -32,13 +32,14 @@ int main(int argc, char* argv[]) {
     }
 
     printf("Sending 10,000 packets to %s...\n", server_ip.c_str(), server_port);
-    for (int i = 0; i < 10000; i++) {
+    for (int i = 0; i < 1000; i++) {
         ssize_t sent_bytes = sendto(sockfd, &i, sizeof(i), 0, (struct sockaddr*)&server_addr, sizeof(server_addr));
 
         if (sent_bytes < 0) perror("Sendto failed");
     }
 
-    cout << "Finished sending 10,000 packets\n";
+    usleep(1000);
+    cout << "Finished sending packets\n";
 
     close(sockfd);
     return 0;
