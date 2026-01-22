@@ -45,7 +45,17 @@ int main(int argc, char* argv[]) {
     while (1) {
         struct sockaddr_in client_addr;
         socklen_t client_len = sizeof(client_addr);
+        int received_seq_num;
+
+        ssize_t bytesRead = recvfrom(server_fd, &received_seq_num, sizeof(received_seq_num), 0, (struct sockaddr*)&client_addr, &client_len);
+
+        if (bytesRead > 0) {
+            cout << "Received Packet Sequence Number: " << received_seq_num << endl;
+        } else {
+            perror("Recvfrom error\n");
+        }
     }
 
+    close(server_fd);
     return 0;
 }
