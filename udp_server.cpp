@@ -51,6 +51,10 @@ int main(int argc, char* argv[]) {
 
         if (bytesRead > 0) {
             cout << "Received Packet Sequence Number: " << received_seq_num << endl;
+            if (received_seq_num == 999) {
+                cout << "Final packet received. Shutting down server.\n";
+                break;
+            }
         } else {
             perror("Recvfrom error\n");
         }

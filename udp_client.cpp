@@ -36,9 +36,10 @@ int main(int argc, char* argv[]) {
         ssize_t sent_bytes = sendto(sockfd, &i, sizeof(i), 0, (struct sockaddr*)&server_addr, sizeof(server_addr));
 
         if (sent_bytes < 0) perror("Sendto failed");
+
+        usleep(1000);
     }
 
-    usleep(1000);
     cout << "Finished sending packets\n";
 
     close(sockfd);
