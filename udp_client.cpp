@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
     }
 
     printf("Sending 10,000 packets to %s...\n", server_ip.c_str(), server_port);
-    for (int i = 0; i < 1000; i++) {
+    for (int i = 0; i < 10000; i++) {
         ssize_t sent_bytes = sendto(sockfd, &i, sizeof(i), 0, (struct sockaddr*)&server_addr, sizeof(server_addr));
 
         if (sent_bytes < 0) perror("Sendto failed");
