@@ -11,11 +11,15 @@ To compile the programs, use the following commands in your terminal:
 ```bash
 g++ udp_server.cpp -o server
 g++ udp_client.cpp -o client
+```
 
 ## How to Run
+
+```bash
 
 1. Start the Server first:
 ./server
 
 2. Start the Client in a second terminal:
 ./client
+```
